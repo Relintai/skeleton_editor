@@ -28,7 +28,7 @@ SOFTWARE.
 
 void register_skeleton_editor_types() {
 #ifdef TOOLS_ENABLED
-	EditorPlugins::add_by_type<SkeletonEditorPluginRemover>();
+	//EditorPlugins::add_by_type<SkeletonEditorPluginRemover>();
 #endif
 }
 
