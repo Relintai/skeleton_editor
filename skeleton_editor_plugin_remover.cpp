@@ -28,16 +28,6 @@ SOFTWARE.
 #include "editor/editor_scale.h"
 #include "editor/editor_settings.h"
 
-void SkeletonEditorPluginRemover::edit(Object *p_object) {
-}
-
-bool SkeletonEditorPluginRemover::handles(Object *p_object) const {
-	return false;
-}
-
-void SkeletonEditorPluginRemover::make_visible(bool p_visible) {
-}
-
 void SkeletonEditorPluginRemover::remove_built_in_editor_plugin() {
 	EditorData &data = EditorNode::get_editor_data();
 
@@ -68,9 +58,6 @@ SkeletonEditorPluginRemover::SkeletonEditorPluginRemover(EditorNode *p_node) {
 	//note calling remove_built_int_editor_plugin here, or in code before this will cause a crash because
 	//not all classes that are used in EditorNode::get_singleton()->remove_editor_plugin() initialized yet!
 	call_deferred("remove_built_in_editor_plugin");
-}
-
-SkeletonEditorPluginRemover::~SkeletonEditorPluginRemover() {
 }
 
 void SkeletonEditorPluginRemover::_bind_methods() {

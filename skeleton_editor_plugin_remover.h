@@ -33,17 +33,9 @@ protected:
 	static void _bind_methods();
 
 public:
-	virtual bool forward_spatial_gui_input(Camera *p_camera, const Ref<InputEvent> &p_event) { return false; }
-	virtual String get_name() const { return "SkeletonEditorPluginRemover"; }
-	bool has_main_screen() const { return false; }
-	virtual void edit(Object *p_object);
-	virtual bool handles(Object *p_object) const;
-	virtual void make_visible(bool p_visible);
-
 	void remove_built_in_editor_plugin();
 
 	SkeletonEditorPluginRemover(EditorNode *p_node);
-	~SkeletonEditorPluginRemover();
 };
 
 #endif
