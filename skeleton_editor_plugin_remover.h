@@ -20,23 +20,21 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-#ifndef B_SKELETON_EDITOR_H
-#define B_SKELETON_EDITOR_H
+#ifndef SKELETON_EDITOR_PLUGIN_REMOVER_H
+#define SKELETON_EDITOR_PLUGIN_REMOVER_H
 
 #include "editor/editor_node.h"
 #include "editor/editor_plugin.h"
 
-class BSkeletonEditorPlugin : public EditorPlugin {
-	GDCLASS(BSkeletonEditorPlugin, EditorPlugin);
-
-	EditorNode *editor;
+class SkeletonEditorPluginRemover : public EditorPlugin {
+	GDCLASS(SkeletonEditorPluginRemover, EditorPlugin);
 
 protected:
 	static void _bind_methods();
 
 public:
 	virtual bool forward_spatial_gui_input(Camera *p_camera, const Ref<InputEvent> &p_event) { return false; }
-	virtual String get_name() const { return "BSkeletonEditorPlugin"; }
+	virtual String get_name() const { return "SkeletonEditorPluginRemover"; }
 	bool has_main_screen() const { return false; }
 	virtual void edit(Object *p_object);
 	virtual bool handles(Object *p_object) const;
@@ -44,8 +42,8 @@ public:
 
 	void remove_built_in_editor_plugin();
 
-	BSkeletonEditorPlugin(EditorNode *p_node);
-	~BSkeletonEditorPlugin();
+	SkeletonEditorPluginRemover(EditorNode *p_node);
+	~SkeletonEditorPluginRemover();
 };
 
 #endif

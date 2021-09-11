@@ -20,7 +20,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-#include "bskeleton_editor.h"
+#include "skeleton_editor_plugin_remover.h"
 
 #include "editor/editor_data.h"
 #include "editor/editor_node.h"
@@ -28,18 +28,17 @@ SOFTWARE.
 #include "editor/editor_scale.h"
 #include "editor/editor_settings.h"
 
-
-void BSkeletonEditorPlugin::edit(Object *p_object) {
+void SkeletonEditorPluginRemover::edit(Object *p_object) {
 }
 
-bool BSkeletonEditorPlugin::handles(Object *p_object) const {
+bool SkeletonEditorPluginRemover::handles(Object *p_object) const {
 	return false;
 }
 
-void BSkeletonEditorPlugin::make_visible(bool p_visible) {
+void SkeletonEditorPluginRemover::make_visible(bool p_visible) {
 }
 
-void BSkeletonEditorPlugin::remove_built_in_editor_plugin() {
+void SkeletonEditorPluginRemover::remove_built_in_editor_plugin() {
 	EditorData &data = EditorNode::get_editor_data();
 
 	for (int i = 0; i < data.get_editor_plugin_count(); ++i) {
@@ -47,8 +46,6 @@ void BSkeletonEditorPlugin::remove_built_in_editor_plugin() {
 
 		if (p->is_class("SkeletonEditorPlugin")) {
 			EditorNode::get_singleton()->remove_editor_plugin(p);
-
-			print_error("remed");
 
 			break;
 		}
@@ -62,24 +59,20 @@ void BSkeletonEditorPlugin::remove_built_in_editor_plugin() {
 		if (n->is_class("SkeletonEditor")) {
 			n->queue_delete();
 
-			print_error("quedel");
-
 			break;
 		}
 	}
 }
 
-BSkeletonEditorPlugin::BSkeletonEditorPlugin(EditorNode *p_node) {
-	editor = p_node;
-
+SkeletonEditorPluginRemover::SkeletonEditorPluginRemover(EditorNode *p_node) {
 	//note calling remove_built_int_editor_plugin here, or in code before this will cause a crash because
 	//not all classes that are used in EditorNode::get_singleton()->remove_editor_plugin() initialized yet!
 	call_deferred("remove_built_in_editor_plugin");
 }
 
-BSkeletonEditorPlugin::~BSkeletonEditorPlugin() {
+SkeletonEditorPluginRemover::~SkeletonEditorPluginRemover() {
 }
 
-void BSkeletonEditorPlugin::_bind_methods() {
-	ClassDB::bind_method(D_METHOD("remove_built_in_editor_plugin"), &BSkeletonEditorPlugin::remove_built_in_editor_plugin);
+void SkeletonEditorPluginRemover::_bind_methods() {
+	ClassDB::bind_method(D_METHOD("remove_built_in_editor_plugin"), &SkeletonEditorPluginRemover::remove_built_in_editor_plugin);
 }

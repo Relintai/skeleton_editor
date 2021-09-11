@@ -23,12 +23,12 @@ SOFTWARE.
 #include "register_types.h"
 
 #ifdef TOOLS_ENABLED
-#include "bskeleton_editor.h"
+#include "skeleton_editor_plugin_remover.h"
 #endif
 
 void register_skeleton_editor_types() {
 #ifdef TOOLS_ENABLED
-	EditorPlugins::add_by_type<BSkeletonEditorPlugin>();
+	EditorPlugins::add_by_type<SkeletonEditorPluginRemover>();
 #endif
 }
 
