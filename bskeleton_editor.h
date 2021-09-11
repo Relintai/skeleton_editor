@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2021 Péter Magyar
+Copyright (c) 2020 Péter Magyar
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -20,17 +20,32 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-#include "register_types.h"
+#ifndef B_SKELETON_EDITOR_H
+#define B_SKELETON_EDITOR_H
 
-#ifdef TOOLS_ENABLED
-#include "bskeleton_editor.h"
+#include "editor/editor_node.h"
+#include "editor/editor_plugin.h"
+
+class BSkeletonEditorPlugin : public EditorPlugin {
+	GDCLASS(BSkeletonEditorPlugin, EditorPlugin);
+
+	EditorNode *editor;
+
+protected:
+	static void _bind_methods();
+
+public:
+	virtual bool forward_spatial_gui_input(Camera *p_camera, const Ref<InputEvent> &p_event) { return false; }
+	virtual String get_name() const { return "BSkeletonEditorPlugin"; }
+	bool has_main_screen() const { return false; }
+	virtual void edit(Object *p_object);
+	virtual bool handles(Object *p_object) const;
+	virtual void make_visible(bool p_visible);
+
+	void remove_built_in_editor_plugin();
+
+	BSkeletonEditorPlugin(EditorNode *p_node);
+	~BSkeletonEditorPlugin();
+};
+
 #endif
-
-void register_skeleton_editor_types() {
-#ifdef TOOLS_ENABLED
-	EditorPlugins::add_by_type<BSkeletonEditorPlugin>();
-#endif
-}
-
-void unregister_skeleton_editor_types() {
-}
