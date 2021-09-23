@@ -1,5 +1,7 @@
 # Skeleton Editor
 
+Deprecated. This is now merged into my godot fork's 3.x branch ( https://github.com/Relintai/godot/tree/3.x ), as not everything was solvable without engine patches. It will be developed there.
+
 This is a c++ engine module for the Godot engine that contains a modularized version of TokageItLab's pr's 3.2 version from the godot engine repository, until it gets merged.
 
 The original pr is here: https://github.com/godotengine/godot/pull/45699
